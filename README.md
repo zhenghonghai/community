@@ -1,3 +1,4 @@
+[TOC]
 # git命令
 - git init  初始化仓库
 - git status    查看状态
@@ -18,4 +19,7 @@
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <script src="js/bootstrap.min.js" type="application/javascript"></script>
 ```
-3. 组件的使用可以查考网址：https://v3.bootcss.com/components/#navbar
+3. 组件的使用可以查考网址：[bootstrap组件](https://v3.bootcss.com/components/#navbar)
+
+# 抽离变量
+1. 在application.properties文件下key-value的形式保存变量，在相应的文件中通过@Value("${key}")获取变量的值；
