@@ -1,4 +1,3 @@
-[TOC]
 # git命令
 - git init  初始化仓库
 - git status    查看状态
@@ -25,3 +24,33 @@
 
 # 抽离变量
 1. 在application.properties文件下key-value的形式保存变量，在相应的文件中通过@Value("${key}")获取变量的值；
+
+# mysql
+- 注意驱动问题
+
+1 导入依赖
+```xml
+<dependency>
+  <groupId>mysql</groupId>
+  <artifactId>mysql-connector-java</artifactId>
+  <scope>runtime</scope>
+</dependency>
+```
+2 在application.properties中添加配置 
+```text
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/community?useUnicode=true&&useSSL=false&&characterEncoding=UTF-8&&serverTimezone=GMT%2B8
+spring.datasource.username=root
+spring.datasource.password=1234
+```
+
+# mybatis
+1 导入依赖
+```xml
+<dependency>
+   <groupId>org.mybatis.spring.boot</groupId>
+   <artifactId>mybatis-spring-boot-starter</artifactId>
+   <version>2.1.2</version>
+</dependency>
+```
+2 在接口上添加注解@Mapper
