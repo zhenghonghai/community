@@ -1,3 +1,4 @@
+[TOC]
 # git命令
 - git init  初始化仓库
 - git status    查看状态
@@ -8,6 +9,8 @@
 本地和远程仓库关联
 - git push -u origin master     将本地代码提交到远程仓库
 - git commit --amend --no-edit  (1参数)追加文件， （2参数）不用修改提交描述，还是原来的
+- git config credential.helper store   在本地生成一个文本，上边记录账号和密码,不用每次提交都需要输入账号密码
+
 
 
 # 导入bootstrap
@@ -18,4 +21,7 @@
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <script src="js/bootstrap.min.js" type="application/javascript"></script>
 ```
-3. 组件的使用可以查考网址：https://v3.bootcss.com/components/#navbar
+3. 组件的使用可以查考网址：[bootstrap组件](https://v3.bootcss.com/components/#navbar)
+
+# 抽离变量
+1. 在application.properties文件下key-value的形式保存变量，在相应的文件中通过@Value("${key}")获取变量的值；
