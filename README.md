@@ -67,7 +67,8 @@ public interface UserMapper {
 
 # flyway
 作用：自动管理数据库版本
-1. 添加依赖
+
+1.添加依赖
 ```java
 <build>
     <plugins>
@@ -92,7 +93,7 @@ public interface UserMapper {
     </plugins>
 </build>
 ```
-2. 使用
+2.使用
 ```bash
 mvn flyway:migrate
 ```
