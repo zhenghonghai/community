@@ -112,3 +112,21 @@ mvn flyway:migrate
 在实体类前加@Data即可
 
 >注意事项: idea需要装Lombok的插件不然没法提示set和get方法。
+
+# 热部署
+1.依赖
+```java
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional>
+</dependency>
+```
+2.使用
+
+必须自动编译
+设置方法打开File->Settings ->Build ->Compiler ->Build project automatically
+
+打开dubug的时候，修改代码保存后可以自动重启，主要用于调试前端代码
+运行时若也要实现热部署可以按住ctrl+shift+alt+? 打开idea的配置
+将compiler.automake.allow.when.app.running 的值改为true
