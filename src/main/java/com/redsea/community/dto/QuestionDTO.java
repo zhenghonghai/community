@@ -1,9 +1,10 @@
-package com.redsea.community.model;
+package com.redsea.community.dto;
 
+import com.redsea.community.model.User;
 import lombok.Data;
 
 @Data
-public class Question {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -14,4 +15,5 @@ public class Question {
     private Integer viewCount;
     private Integer likeCount;
     private String tag;
+    private User user;
 }

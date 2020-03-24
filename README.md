@@ -97,3 +97,18 @@ public interface UserMapper {
 ```bash
 mvn flyway:migrate
 ```
+
+# lombok
+1.添加依赖
+```java
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.12</version>
+    <scope>provided</scope>
+</dependency>
+```
+2.使用
+在实体类前加@Data即可
+
+>注意事项: idea需要装Lombok的插件不然没法提示set和get方法。
