@@ -54,3 +54,45 @@ spring.datasource.password=1234
 </dependency>
 ```
 2 在接口上添加注解@Mapper
+```java
+@Mapper
+public interface UserMapper {
+    @Insert("insert into user (account_id,name,token,gmt_create,gmt_modified) values (#{accountId},#{name},#{token},#{gmtCreate},#{gmtModified})")
+    void insert(User user);
+
+    @Select("select * from user where token = #{token}")
+    User findByToken(@Param("token") String token);
+}
+```
+
+# flyway
+作用：自动管理数据库版本
+1. 添加依赖
+```java
+<build>
+    <plugins>
+       ……
+       <plugin>
+           <groupId>org.flywaydb</groupId>
+           <artifactId>flyway-maven-plugin</artifactId>
+           <version>6.3.1</version>
+           <configuration>
+               <url>jdbc:mysql://localhost:3306/community?useUnicode=true&amp;useSSL=false&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8</url>
+               <user>root</user>
+               <password>1234</password>
+           </configuration>
+           <dependencies>
+               <dependency>
+                   <groupId>mysql</groupId>
+                   <artifactId>mysql-connector-java</artifactId>
+                   <version>8.0.19</version>
+               </dependency>
+           </dependencies>
+       </plugin>
+    </plugins>
+</build>
+```
+2. 使用
+```bash
+mvn flyway:migrate
+```
