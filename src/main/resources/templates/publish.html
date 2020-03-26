@@ -17,6 +17,7 @@
             <h2><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true" style="margin: 5px;"></span>  发布</h2>
             <hr>
             <form action="/publish" method="post">
+                <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
                     <label for="title">问题标题：（简单扼要）</label>
                     <input type="text" class="form-control" id="title" name="title" th:value="${title}" placeholder="问题标题……">
@@ -29,18 +30,6 @@
                     <label for="title">添加标签：</label>
                     <input type="text" class="form-control" id="tag" name="tag" th:value="${tag}" placeholder="输入标签，以,号隔开">
                 </div>
-<!--                <div class="container-fluid main">-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">-->
-<!--                            <div class="alert alert-danger col-lg-9 col-md-12 col-sm-12 col-xs-12"-->
-<!--                                 th:text="${error}" th:if="${error != null}">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">-->
-<!--                            <button type="submit" class="btn btn-success btn-publish">发布</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
                 <span class="alert-danger" th:text="${error}"></span>
                 <button type="submit" class="btn btn-success btn-publish">发布</button>
             </form>
