@@ -22,6 +22,8 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
+
+
     public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalCount = questionMapper.count();
