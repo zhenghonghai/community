@@ -2,6 +2,8 @@ package com.redsea.community.service;
 
 import com.redsea.community.dto.PaginationDTO;
 import com.redsea.community.dto.QuestionDTO;
+import com.redsea.community.exception.CustomizeErrorCode;
+import com.redsea.community.exception.CustomizeException;
 import com.redsea.community.mapper.QuestionMapper;
 import com.redsea.community.mapper.UserMapper;
 import com.redsea.community.model.Question;
@@ -95,6 +97,9 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
@@ -118,7 +123,10 @@ public class QuestionService {
             QuestionExample example = new QuestionExample();
             example.createCriteria()
                     .andCreatorEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }
