@@ -1,7 +1,6 @@
 package com.redsea.community.controller;
 
 import com.redsea.community.dto.QuestionDTO;
-import com.redsea.community.mapper.QuestionMapper;
 import com.redsea.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +17,8 @@ public class QuestionController {
     @GetMapping("/question/{id}")
     public String question(@PathVariable("id") Integer id, Model model) {
         QuestionDTO questionDTO = questionService.getById(id);
+        // 累加阅读数
+        questionService.incView(id);
         model.addAttribute("question", questionDTO);
         return "question";
     }

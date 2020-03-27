@@ -4,6 +4,7 @@ import com.redsea.community.dto.PaginationDTO;
 import com.redsea.community.dto.QuestionDTO;
 import com.redsea.community.exception.CustomizeErrorCode;
 import com.redsea.community.exception.CustomizeException;
+import com.redsea.community.mapper.QuestionExtMapper;
 import com.redsea.community.mapper.QuestionMapper;
 import com.redsea.community.mapper.UserMapper;
 import com.redsea.community.model.Question;
@@ -25,6 +26,9 @@ public class QuestionService {
 
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
 
 
@@ -128,5 +132,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
