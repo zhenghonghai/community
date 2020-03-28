@@ -40,7 +40,6 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request,
                            HttpServletResponse response) {
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
@@ -51,7 +50,7 @@ public class AuthorizeController {
 
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
         GithubUser githubUser = githubProvider.getUser(accessToken);
-        if (githubUser != null) {
+        if (githubUser != null ) {
             User user = new User();
             user.setAccountId(String.valueOf(githubUser.getId()));
             user.setName(githubUser.getName());
@@ -61,7 +60,6 @@ public class AuthorizeController {
             userService.createOrUpdate(user);
             response.addCookie(new Cookie("token", token));
             // 登录成功，写cookie和session
-            // request.getSession().setAttribute("githubUser", githubUser);
             return "redirect:/";
         } else {
             // 登录失败，重新登录

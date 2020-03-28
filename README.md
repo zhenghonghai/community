@@ -65,7 +65,7 @@ public interface UserMapper {
 }
 ```
 
-3 运行命令
+3 运行命令F
 ```bash
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ```
@@ -171,7 +171,7 @@ mybatis.mapper-locations=classpath:mapper/*.xml
 2.使用
 ```bash
 mvn flyway:migrate
-```
+``` 
 
 # lombok
 1.添加依赖

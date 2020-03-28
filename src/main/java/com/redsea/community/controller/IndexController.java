@@ -1,7 +1,6 @@
 package com.redsea.community.controller;
 
 import com.redsea.community.dto.PaginationDTO;
-import com.redsea.community.mapper.UserMapper;
 import com.redsea.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class IndexController {
-
-    @Autowired
-    private UserMapper userMapper;
 
     @Autowired
     private QuestionService questionService;
