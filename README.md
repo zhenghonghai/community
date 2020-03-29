@@ -65,9 +65,10 @@ public interface UserMapper {
 }
 ```
 
-3 运行命令F
+3 运行命令
 ```bash
 mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+
 ```
 4 添加mybatis插件
 ```java
