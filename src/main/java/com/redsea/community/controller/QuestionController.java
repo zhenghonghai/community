@@ -3,6 +3,7 @@ package com.redsea.community.controller;
 import com.redsea.community.dto.CommentCreateDTO;
 import com.redsea.community.dto.CommentDTO;
 import com.redsea.community.dto.QuestionDTO;
+import com.redsea.community.enums.CommentTypeEnum;
 import com.redsea.community.exception.CustomizeErrorCode;
 import com.redsea.community.exception.CustomizeException;
 import com.redsea.community.service.CommentService;
@@ -25,19 +26,15 @@ public class QuestionController {
     private CommentService commentService;
 
     @GetMapping("/question/{id}")
-    public String question(@PathVariable("id") String id, Model model) {
-        Long questionId = null;
-        try {
-            questionId = Long.parseLong(id);
-        }catch (NumberFormatException e) {
-            throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);
-        }
-        QuestionDTO questionDTO = questionService.getById(questionId);
-        List<CommentDTO> comments = commentService.listByQuestionId(questionId);
-        // 累加阅读数
-        questionService.incView(questionId);
+    public String question(@PathVariable(name = "id") Long id, Model model) {
+        QuestionDTO questionDTO = questionService.getById(id);
+        List<QuestionDTO> relatedQuestions = questionService.selectRelated(questionDTO);
+        List<CommentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
+        //累加阅读数
+        questionService.incView(id);
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", comments);
+        model.addAttribute("relatedQuestions", relatedQuestions);
         return "question";
     }
 }

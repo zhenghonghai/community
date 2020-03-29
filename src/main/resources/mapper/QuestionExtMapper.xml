@@ -16,13 +16,27 @@
     <update id="incView" parameterType="com.redsea.community.model.Question">
         update question
         set view_count =view_count + #{viewCount,jdbcType=INTEGER}
-        where id = #{id,jdbcType=INTEGER}
+        where id = #{id}
     </update>
 
     <update id="incCommentCount" parameterType="com.redsea.community.model.Question">
         update question
         set comment_count =comment_count + #{commentCount,jdbcType=INTEGER}
-        where id = #{id,jdbcType=INTEGER}
+        where id = #{id}
     </update>
+
+    <select id="selectRelated" parameterType="com.redsea.community.model.Question" resultMap="BaseResultMap">
+        select * from question
+        <where>
+            <if test="id != null">
+                and id != #{id}
+            </if>
+            <if test="tag != null and tag != ''">
+                and tag regexp #{tag}
+            </if>
+        </where>
+        order by gmt_create desc limit 20
+    </select>
+
 
 </mapper>
